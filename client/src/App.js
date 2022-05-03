@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
 import './App.css';
-
+import Chat from "./components/Chat"
+import SetName from "./components/SetName/SetName"
 
 function App() {
 
@@ -15,42 +16,37 @@ function App() {
   const [userName, setUserName] = useState("")
 
   useEffect(() => {
-    socket.on("chat", msg =>
+    socket.on("chat", ({userName,message}) =>
       setChat(prevMessages => {
-        return [msg, ...prevMessages];
+        return [{userName, message}, ...prevMessages];
       })
     );
   }, []);
- 
+
 
   const MessageHandler = (e) =>{
     e.preventDefault()
-    socket.emit("message", message)
+    socket.emit("message", {userName,message})
     setMessage('')
   }
 
-  // useEffect(() => {
-
-  //   // we need to set up all of our event listeners
-  //   // in the useEffect callback function
-  //   console.log('Is this running?');
-
-  //   // note that we're returning a callback function
-  //   // this ensures that the underlying socket will be closed if App is unmounted
-  //   // this would be more critical if we were creating the socket in a subcomponent
-  //   return () => socket.disconnect(true);
-  // }, []);
+ 
 
   return (
     <div className="App">
 
-      <h1>Socket Test</h1>
 
-      {JSON.stringify(chat)}
+      
+      <SetName setUserName={setUserName} userName={userName}/>
+      
+      <h1>BoxRoom</h1>
+
       <form onSubmit={MessageHandler}>
         <input onChange={(e) => setMessage(e.target.value)} value={ message }/>
         <button>Send</button>
       </form>
+
+      <Chat chat={chat}/>
 
     </div>
   );

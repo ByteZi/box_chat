@@ -1,0 +1,40 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:none;
+}
+
+.modal{
+    background-color:green;
+    position:fixed;
+    width:100vw;
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    text-align:center;
+}
+
+.setName{
+    background-color:white;
+    border-radius:50px;
+    width:fit-content;
+    padding:60px 120px;
+    margin:0 auto;
+}
+
+.setName > *{
+    margin:10px 0;
+}
+.set{
+    font-size:20px;
+    padding:5px 10px;
+    width:80px;
+    border-radius:40px;
+    color:white;
+    background-color:skyblue;
+    border:none;
+    cursor:pointer;
+
+}
+

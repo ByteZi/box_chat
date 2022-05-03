@@ -14,11 +14,12 @@ const io = require('socket.io')(server, { cors: true });
 
 io.on('connection', socket => {
     console.log("Nice to meet you.");
+
     //socket.on GET
-    socket.on("message", data => {
+    socket.on("message", ({userName, message}) => {
 
         //io.emit POST
-        io.emit("chat", data);
+        io.emit("chat", ({userName,message}));
 
         //Sends message to all clients EXCEPT sender
         // socket.broadcast.emit("chat", data);
