@@ -12,24 +12,21 @@ function App() {
   
   const [message, setMessage] = useState("")
 
-  
-  useEffect(() => {
+  const [userName, setUserName] = useState("")
 
-    //socket.emit GET
-    socket.on("chat", chat =>
+  useEffect(() => {
+    socket.on("chat", msg =>
       setChat(prevMessages => {
-        return [chat, ...prevMessages];
+        return [msg, ...prevMessages];
       })
     );
-
   }, []);
  
 
   const MessageHandler = (e) =>{
     e.preventDefault()
-    //socket.emit POST
     socket.emit("message", message)
-    
+    setMessage('')
   }
 
   // useEffect(() => {
@@ -54,8 +51,6 @@ function App() {
         <input onChange={(e) => setMessage(e.target.value)} value={ message }/>
         <button>Send</button>
       </form>
-
-      
 
     </div>
   );
