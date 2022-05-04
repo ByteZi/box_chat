@@ -10,44 +10,50 @@ function App() {
   // we don't need to destructure the 'setSocket' function since we won't be updating the socket state
   const [socket] = useState(() => io(':8000'));
   const [chat, setChat] = useState([]);
-  
-  const [message, setMessage] = useState("")
-
   const [userName, setUserName] = useState("")
+  const [message, setMessage] = useState("")
+  const [check, setCheck] = useState(false)
 
   useEffect(() => {
-    socket.on("chat", ({userName,message}) =>
+    if(window.sessionStorage.getItem('userName')){
+      setUserName(window.sessionStorage.getItem('userName'))
+      setCheck(true)
+    }
+  },[])
+  
+  useEffect(() => {
+    socket.on("chat", ({ userName, message }) =>
       setChat(prevMessages => {
-        return [{userName, message}, ...prevMessages];
+        return [{ userName, message }, ...prevMessages];
       })
     );
   }, []);
 
-
-  const MessageHandler = (e) =>{
+  const MessageHandler = (e) => {
     e.preventDefault()
-    socket.emit("message", {userName,message})
+    socket.emit("message", { userName, message })
     setMessage('')
   }
 
- 
-
   return (
     <div className="App">
+      {
+        !check &&
+        <SetName setUserName={setUserName} userName={userName} setCheck={setCheck} />
+      }
 
+      <header id="header">
+        <h1>BoxRoom📦</h1>
+      </header>
 
-      
-      <SetName setUserName={setUserName} userName={userName}/>
-      
-      <h1>BoxRoom</h1>
+      <main id="body">
+        <form onSubmit={MessageHandler}>
+          <input onChange={(e) => setMessage(e.target.value)} value={message} />
+          <button>Send</button>
+        </form>
 
-      <form onSubmit={MessageHandler}>
-        <input onChange={(e) => setMessage(e.target.value)} value={ message }/>
-        <button>Send</button>
-      </form>
-
-      <Chat chat={chat}/>
-
+        <Chat chat={chat} />
+      </main>
     </div>
   );
 }
