@@ -4,8 +4,7 @@ import "./SetName.css"
 const SetName = (props) => {
     
     const [nameErr, setNameErr] = useState(false)
-    //Create current users using socket
-
+    
     const NameSet = () => {
         if (props.userName === "") setNameErr(true)
         else {
@@ -13,8 +12,7 @@ const SetName = (props) => {
             props.setCheck(window.sessionStorage.getItem('userName', props.userName))
         }
     };
-
-
+    
     return (
         <div className="modal">
 
