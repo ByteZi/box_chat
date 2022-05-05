@@ -65,8 +65,8 @@ export default App;
 //   setMessage('')
 // }
 
-{/* <form onSubmit={MessageHandler}>
+/* <form onSubmit={MessageHandler}>
           <input onChange={(e) => setMessage(e.target.value)} value={message} />
           <button>Send</button>
         </form>
-        <Chat chat={chat} /> */}
+        <Chat chat={chat} /> */

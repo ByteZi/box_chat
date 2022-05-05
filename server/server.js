@@ -4,9 +4,6 @@ const app = express();
 const server = require('http').Server(app)
 const PORT = 8000
 // const server = app.listen(8000, () => console.log("Server Port : 3000") )
-// To initialize the socket, we need to
-// invoke the socket.io library
-// and pass it our Express server
 const io = require('socket.io')(server, { cors: true });
 
 server.listen(PORT, () => console.log("Port :",PORT))
@@ -23,22 +20,18 @@ io.on('connection', (socket) => {
     
     console.log("User connected", socket.id)
 
-    socket.on("joinRoom", (roomName) => {
-       
-        // console.log(roomName, "Joined")
-        socket.join(roomName)
-        
+        socket.on("joinRoom", (roomName) => {
+            socket.join(roomName)
+        })
+
         socket.on("sentMessage", (roomName,userName,message) => {
-        //     roomChat[roomName].push({userName, message})
+            roomChat[roomName].push({userName, message})
             io.to(roomName).emit("retrieveMessage", userName, message , roomChat[roomName])
-     
-    })
+        })
 
-
-    })
-
-   
-
+        socket.on("prev", roomName =>{
+            io.emit("sendPrev", roomChat[roomName])
+        })
 })
 
 
