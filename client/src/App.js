@@ -13,11 +13,7 @@ import {
 
 
 function App() {
-
-  // notice that we pass a callback function to initialize the socket
-  // we don't need to destructure the 'setSocket' function since we won't be updating the socket state
-
-
+  
   const [userName, setUserName] = useState("")
   const [message, setMessage] = useState("")
   const [check, setCheck] = useState(false)
@@ -45,7 +41,6 @@ function App() {
 
         <main id="body">
           <Switch>
-
             <Route path="/:roomName">
               <Room
                 setMessage={setMessage}

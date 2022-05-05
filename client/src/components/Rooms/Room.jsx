@@ -5,25 +5,27 @@ import { useParams } from 'react-router'
 
 const Room = (props) => {
     const {setMessage, message, userName} = props
+    const { roomName } = useParams()
 
     const [socket] = useState(() => io(':8000'));
     const [chat, setChat] = useState([]);
-    const {roomName} = useParams()
+
 
     useEffect(()=>{
         socket.emit("joinRoom", roomName)
+        // socket.emit("getPrevMessages", roomName)
     },[roomName])
     
     useEffect(() => {
-        socket.on("rMessage", (userName, message, roomChat) => {
-            setChat([...roomChat, {userName, message}])
-            
+        socket.on("retrieveMessage", (userName, message, prevRoomChat) => {
+           setChat(prevChat => [...prevChat, {userName,message}])
         })
     },[socket])
 
     const MessageHandler = (e) => {
         e.preventDefault()
-        socket.emit("sentMessage", { roomName, userName, message })
+        //Sends data as a object
+        socket.emit("sentMessage", roomName,userName,message)
         setMessage('')
     }
 

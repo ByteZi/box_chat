@@ -12,28 +12,29 @@ const io = require('socket.io')(server, { cors: true });
 server.listen(PORT, () => console.log("Port :",PORT))
 
 let roomChat = {
-    general : [],
-    Games: [{userName:"Me",message:"Test Message"}],
+    Games: [],
     Coding : []
 }
 
 io.on('connection', (socket) => {
+    //io is the SERVER EMITS GOD DAMNIT
     //[socket] is the [client]/socket that has joined
     //[io.emit] is the server to emit it to everyone
     
     console.log("User connected", socket.id)
 
-    socket.on("joinRoom", (roomName) =>{
+    socket.on("joinRoom", (roomName) => {
        
-        console.log(roomName, "Joined")
+        // console.log(roomName, "Joined")
         socket.join(roomName)
         
-        socket.on("sentMessage", (data, {userName,message}=data) => {
-            // roomChat[data.roomName].push({userName, message} = data)
-            // // console.log(data.message)
-            // console.log(roomChat)
-            io.to(data.roomName).emit("rMessage", userName, message , roomChat[roomName])
-        })
+        socket.on("sentMessage", (roomName,userName,message) => {
+        //     roomChat[roomName].push({userName, message})
+            io.to(roomName).emit("retrieveMessage", userName, message , roomChat[roomName])
+     
+    })
+
+
     })
 
    
