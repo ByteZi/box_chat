@@ -1,29 +1,38 @@
 import React, { useState, useEffect } from 'react';
-
 import './App.css';
-
 import SetName from "./components/SetName/SetName"
 import Room from "./components/Rooms/Room"
+import RoomsList from "./components/RoomsList/RoomsList"
+import io from 'socket.io-client';
 import {
   BrowserRouter,
-  Link,
   Switch,
   Route
 } from "react-router-dom";
 
 
-function App() {
-  
-  const [userName, setUserName] = useState("")
-  const [message, setMessage] = useState("")
-  const [check, setCheck] = useState(false)
 
+function App() {
+  const [socket] = useState(() => io(':8000'));
+
+  const [userName, setUserName] = useState("")
+  const [check, setCheck] = useState(false)
+  const [rooms, setRooms] = useState([])
+
+  //Check if user has a UserName
   useEffect(() => {
     if (window.sessionStorage.getItem('userName')) {
       setUserName(window.sessionStorage.getItem('userName'))
       setCheck(true)
     }
   }, [])
+
+  //Initialize RoomList on Web Startup
+  useEffect(() => {
+    socket.on("InitRoom", roomKeys => {
+        setRooms(roomKeys)
+    })
+  },[socket])
 
   return (
     <div className="App">
@@ -34,21 +43,25 @@ function App() {
       <BrowserRouter>
         <header id="header">
           <h1>BoxRoom📦</h1>
-          <Link to="/Games">Room1</Link>
-          {"  | "}
-          <Link to="/Coding">Room2</Link>
         </header>
 
         <main id="body">
-          <Switch>
-            <Route path="/:roomName">
-              <Room
-                setMessage={setMessage}
-                message={message}
-                userName={userName}
-              />
-            </Route>
-          </Switch>
+
+          <div id="main-left">
+            <RoomsList setRooms={setRooms} rooms={rooms} />
+          </div>
+
+          <div id="main-right" className="flex-2">
+            <Switch>
+              <Route path="/:roomName">
+                <Room
+                  userName={userName}
+                  rooms={rooms}
+                />
+              </Route>
+            </Switch>
+          </div>
+
         </main>
 
       </BrowserRouter>

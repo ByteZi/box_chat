@@ -9,39 +9,44 @@ const io = require('socket.io')(server, { cors: true });
 server.listen(PORT, () => console.log("Port :",PORT))
 
 let roomChat = {
-    Games: [],
-    Coding : []
+    Games : [{userName:"TestChat", message:"testChat"}]
 }
 
 io.on('connection', (socket) => {
     //io is the SERVER EMITS GOD DAMNIT
     //[socket] is the [client]/socket that has joined
     //[io.emit] is the server to emit it to everyone
-    
+
     console.log("User connected", socket.id)
 
-        socket.on("joinRoom", (roomName) => {
-            socket.join(roomName)
-        })
+    //Emit all rooms to everyone
+    io.emit("InitRoom", Object.keys(roomChat))
+    
+    socket.on("joinRoom", (roomName)=> {
+        socket.join(roomName)
+        io.emit("prevChat", roomChat[roomName])
+    })
 
-        socket.on("sentMessage", (roomName,userName,message) => {
-            roomChat[roomName].push({userName, message})
-            io.to(roomName).emit("retrieveMessage", userName, message , roomChat[roomName])
-        })
+    socket.on("newRoom", (newRoom) =>{
+        if(roomChat[newRoom]) console.log("room Exists")
+        // roomChat[newRoom] = []
+        else{
+            roomChat[newRoom] = []
+            io.emit("updatedList", Object.keys(roomChat))
+        }
+ 
+    })
 
-        socket.on("prev", roomName =>{
-            io.emit("sendPrev", roomChat[roomName])
-        })
+    //Message 
+
+    socket.on("sentMessage", (roomName,userName,message) => {
+        roomChat[roomName].push({userName, message})
+        io.to(roomName).emit("prevMessages", roomChat[roomName])
+    })
+
+    socket.on("getPrevMessagesInit", roomName =>{
+        socket.emit("prevMessagesInit", roomChat[roomName])
+    })
 })
 
-
-
-    // //socket.on GET
-    // socket.on("message", (roomName,userName,message) => {
-    
-    //     //io.emit POST
-    //     io.emit("chat", ({userName,message}));
-
-    //     //Sends message to all clients EXCEPT sender
-    //     // socket.broadcast.emit("chat", data);
-    // })
+//Use io.to().emit instead

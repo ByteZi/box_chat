@@ -1,12 +1,14 @@
-
+// import { useParams } from 'react-router'
 const Chat = (props) => {
+    const { chat } = props
+   
 
     return (
-        <div style={{backgroundColor:"pink"}}>
+        <div style={{ backgroundColor: "pink" }}>
             {
-            props.chat.map((user, i) => {
-                return <div key={i}>{user.userName}: {user.message}</div>
-            })
+                chat.map((user, i) => {
+                    return <div key={i}>{user.userName}: {user.message}</div>
+                })
             }
         </div>
     )

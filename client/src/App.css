@@ -4,8 +4,76 @@
   box-sizing:none;
 }
 
+
+
+.flex-2{
+  flex:2;
+}
+
 #header{
-  background-color:rgb(32, 32, 32);
+  background-color:rgb(52, 52, 52);
   color:white;
-  padding:15px;
+  padding:10px;
+  position:fixed;
+  width:100vw;
+}
+
+
+/* Fix the body and header size calculation */
+#body{ 
+  display:flex;
+  justify-content:space-between;
+  height:94vh;
+  padding-top:63px;
+
+}
+
+#main-left{
+  background-color:rgb(52, 52, 52);
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+
+}
+
+#main-right{
+  border:solid 1px red;
+}
+
+/* BTN Create */
+
+#newRoomInput{
+  padding:5px;
+}
+
+#createbtn{
+
+  width:100%;
+  height:50px;
+
+  background-color:rgb(8, 162, 223);
+  color:white;
+  cursor:pointer;
+  font-size:20px;
+}
+
+/*Room Link */
+
+#link-list{
+  display:flex;
+  flex-direction:column;
+  text-align: center;
+}
+
+.roomLink{
+  color:white;
+  text-decoration:none;
+  font-size:20px;
+  margin:10px 0;
+}
+
+.roomLink:hover{
+  color:skyblue;
+  cursor:pointer;
 }
