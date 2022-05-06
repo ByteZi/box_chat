@@ -1,0 +1,10 @@
+*{
+    padding:0;
+    margin:0;
+    box-sizing:border-box;   
+}
+
+#main-container{
+    background-color:rgb(39, 39, 39);
+    height:100vh;
+}

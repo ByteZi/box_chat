@@ -3,6 +3,8 @@ import './App.css';
 import SetName from "./components/SetName/SetName"
 import Room from "./components/Rooms/Room"
 import RoomsList from "./components/RoomsList/RoomsList"
+import Main from "./components/Main/Main"
+
 import io from 'socket.io-client';
 import {
   BrowserRouter,
@@ -10,11 +12,9 @@ import {
   Route
 } from "react-router-dom";
 
-
-
 function App() {
   const [socket] = useState(() => io(':8000'));
-
+  
   const [userName, setUserName] = useState("")
   const [check, setCheck] = useState(false)
   const [rooms, setRooms] = useState([])
@@ -40,7 +40,6 @@ function App() {
         {/* Modal just for initial entering of user */}
         {!check && <SetName setUserName={setUserName} userName={userName} setCheck={setCheck} />}
 
-
         <header id="header">
           <h1>BoxRoom📦</h1>
         </header>
@@ -53,13 +52,16 @@ function App() {
           <div id="main-right">
           <Switch>
             <Route path="/:roomName">
+
               <Room
                 userName={userName}
                 rooms={rooms}
               />
+              
+
             </Route>
             <Route path="/">
-              {/* MAIN PAGE */}
+              <Main/>
             </Route>
           </Switch>
           </div>

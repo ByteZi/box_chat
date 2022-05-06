@@ -1,7 +1,7 @@
 *{
   margin:0;
   padding:0;
-  box-sizing:none;
+  box-sizing:border-box;
 }
 
 #header{
@@ -16,124 +16,25 @@
 /* Fix the body and header size calculation */
 #body{ 
   display:flex;
-  justify-content:space-between;
+  
   height:100vh;
-  /* padding-top:63px; ==== for header*/
+  /* padding-top:3.9em; */
 }
 
 #main-left{
   background-color:rgb(52, 52, 52);
   display:flex;
   flex-direction:column;
+  justify-content:space-between;
+  width:200px;
 }
 
 #main-right{
   display:flex;
-  width:100%;
+  width:100%; 
   flex-direction:column;
-
 }
 
-/* BTN Create */
-#newRoomInput{
-  padding:5px;
-}
-
-#createbtn{
-  width:100%;
-  height:50px;
-
-  background-color:rgb(8, 162, 223);
-  color:white;
-  cursor:pointer;
-  font-size:20px;
-}
-
-
-/*Room Link */
-
-#link-list{
-  display:flex;
-  flex-direction:column;
-  text-align: center;
-}
-
-.roomLink{
-  color:white;
-  text-decoration:none;
-  font-size:20px;
-  margin:10px 0;
-}
-
-.roomLink:hover{
-  color:skyblue;
-  cursor:pointer;
-}
-
-/* CHAT CONTAINER */
-
-.flex-3{
-  flex:3;
-}
-
-.flex-05{
-  flex:0.2
-}
-
-#chat{
-  height:100%;
-  display:flex;
-  flex-direction: column;
-  background-color:rgb(60, 60, 60);
- 
-}
-
-#chat-container{
-  overflow-y: auto;
-  box-shadow:inset 0 0 100px rgba(0, 0, 0, 0.462);
-}
-
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background-color:rgba(255, 255, 255, 0.119);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 0, 0, 0.485);
-}
-
-.publicChat{
-  font-size:20px;
-  margin:20px;
-  background-color:rgb(0, 74, 22);
-  color:rgb(255, 255, 255);
-  padding:15px;
-  width:fit-content;
-  border-radius:50px;
-}
-
-.userChat{
-  font-size:20px;
-  margin:20px;
-  background-color:rgb(31, 31, 31);
-  color:white;
-  padding:15px;
-  width:fit-content;
-  border-radius:50px;
-  display:flex;
-}
-
-.userName{
-  color:rgb(190, 71, 71);
-}
-
-.user-container{
-  display:flex;
-  justify-content: flex-end;
-}
                         
 /* Chatroom-Name */
 #chatroom-name{
@@ -143,32 +44,3 @@
   padding:20px;
 }
 
-/* Send btn */
-.sendform{
-  display:flex;
-  justify-content: flex-start;
-  align-items: center;
-  padding:0 20px;
-  border-top:1px solid rgba(255, 255, 255, 0.679);
-}
-
-.sendinput, .sendbtn{
-  padding:10px;
-  font-size:20px;
-  border-radius:50px;
-  margin:0 10px;
-}
-
-.sendinput{
-
-}
-
-.sendbtn{
-  cursor:pointer;
-  color:white;
-  background-color:rgb(8,162,223);
-  border:none;
-  width:100px;
-}
-
-/* Scrollbar for chat */

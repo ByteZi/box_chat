@@ -8,9 +8,7 @@ const io = require('socket.io')(server, { cors: true });
 
 server.listen(PORT, () => console.log("Port :",PORT))
 
-let roomChat = {
-    Games : []
-}
+let roomChat = {}
 
 io.on('connection', (socket) => {
     //io is the SERVER EMITS GOD DAMNIT
@@ -34,19 +32,20 @@ io.on('connection', (socket) => {
         // roomChat[newRoom] = []
         else{
             roomChat[newRoom] = []
+            console.log(roomChat)
             io.emit("updatedList", Object.keys(roomChat))
         }
  
     })
 
     //Message 
-
     socket.on("sentMessage", (roomName,userName,message) => {
         roomChat[roomName].push({userName, message})
         io.to(roomName).emit("prevMessages", roomChat[roomName])
     })
 
     socket.on("getPrevMessagesInit", roomName =>{
+        
         socket.emit("prevMessagesInit", roomChat[roomName])
     })
 })

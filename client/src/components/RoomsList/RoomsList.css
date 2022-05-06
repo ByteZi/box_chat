@@ -1,0 +1,58 @@
+/* LIST Design */
+
+#link-list{
+    display:flex;
+    flex-direction:column;
+    text-align: center;
+    overflow-x: auto;
+  }
+
+  #link-list a:nth-child(2n){
+    background-color:rgb(63, 63, 63);
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background-color:rgba(255, 255, 255, 0.119);
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 0, 0, 0.485);
+  }
+  
+  .roomLink{
+    color:white;
+    text-decoration:none;
+    font-size:20px;
+    padding:15px 0;
+  }
+  
+  .roomLink:hover{
+    color:skyblue;
+    cursor:pointer;
+  }
+
+  /* Create Room Design  */
+
+  #create-container{
+  
+  }
+
+  #newRoomInput, #createbtn{
+    width:100%;
+  }
+
+  #newRoomInput{
+    padding:5px;
+  }
+  
+  #createbtn{
+    height:50px;
+    background-color:rgb(8, 162, 223);
+    color:white;
+    cursor:pointer;
+    font-size:20px;
+  }
