@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import io from 'socket.io-client';
-import {Link} from "react-router-dom"
-import "./RoomList.css"
+import {Link} from "react-router-dom";
+
 const RoomsList = (props) => {
     const {setRooms, rooms} = props
 
@@ -11,7 +11,7 @@ const RoomsList = (props) => {
     //Adds Room to server Object and current room State
     const CreateRoom = (e) => {
         e.preventDefault()
-
+            if (newRoom ===  "") return null
             socket.emit("newRoom", newRoom)
 
              //FUTURE UPDATE / FIX : Once ["newRoom"] is called, ["updatedList"] gets called 

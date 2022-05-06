@@ -9,7 +9,7 @@ const io = require('socket.io')(server, { cors: true });
 server.listen(PORT, () => console.log("Port :",PORT))
 
 let roomChat = {
-    Games : [{userName:"TestChat", message:"testChat"}]
+    Games : []
 }
 
 io.on('connection', (socket) => {
