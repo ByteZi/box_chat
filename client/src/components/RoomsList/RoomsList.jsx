@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
 import {Link} from "react-router-dom"
+import "./RoomList.css"
 const RoomsList = (props) => {
     const {setRooms, rooms} = props
 
@@ -13,7 +14,7 @@ const RoomsList = (props) => {
 
             socket.emit("newRoom", newRoom)
 
-             //FUTURE UPDATE : Once ["newRoom"] is called, ["updatedList"] gets called 
+             //FUTURE UPDATE / FIX : Once ["newRoom"] is called, ["updatedList"] gets called 
             socket.on('updatedList', updatedRoomList =>{
                 setRooms(updatedRoomList)
             })

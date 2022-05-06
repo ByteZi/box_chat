@@ -30,17 +30,17 @@ function App() {
   //Initialize RoomList on Web Startup
   useEffect(() => {
     socket.on("InitRoom", roomKeys => {
-        setRooms(roomKeys)
+      setRooms(roomKeys)
     })
-  },[socket])
+  }, [socket])
 
   return (
     <div className="App">
-
-      {/* Modal just for initial entering of user */}
-      {!check && <SetName setUserName={setUserName} userName={userName} setCheck={setCheck} />}
-
       <BrowserRouter>
+        {/* Modal just for initial entering of user */}
+        {!check && <SetName setUserName={setUserName} userName={userName} setCheck={setCheck} />}
+
+
         <header id="header">
           <h1>BoxRoom📦</h1>
         </header>
@@ -50,18 +50,19 @@ function App() {
           <div id="main-left">
             <RoomsList setRooms={setRooms} rooms={rooms} />
           </div>
-
-          <div id="main-right" className="flex-2">
-            <Switch>
-              <Route path="/:roomName">
-                <Room
-                  userName={userName}
-                  rooms={rooms}
-                />
-              </Route>
-            </Switch>
+          <div id="main-right">
+          <Switch>
+            <Route path="/:roomName">
+              <Room
+                userName={userName}
+                rooms={rooms}
+              />
+            </Route>
+            <Route path="/">
+              {/* MAIN PAGE */}
+            </Route>
+          </Switch>
           </div>
-
         </main>
 
       </BrowserRouter>

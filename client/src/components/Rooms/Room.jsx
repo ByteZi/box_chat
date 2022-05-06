@@ -1,4 +1,4 @@
-import Chat from "../Chat"
+import Chat from "../cHAT/Chat"
 import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
 import { useParams } from 'react-router'
@@ -16,7 +16,7 @@ const Room = (props) => {
 
     useEffect(() => {
         //Join Socket room after param changes
-        socket.emit("joinRoom", roomName)
+        socket.emit("joinRoom", roomName, userName)
 
         //Once room joined, set room chat to previous chat 
         socket.emit("getPrevMessagesInit", roomName)
@@ -39,11 +39,20 @@ const Room = (props) => {
     return (
         <>
             <h1>{roomName}</h1>
-            <form onSubmit={MessageHandler}>
+
+            <div style={{ backgroundColor: "pink" }}>
+                {
+                    chat.map((user, i) => {
+                        return <p key={i}>{user.userName}: {user.message}</p>
+                    })
+                }
+            </div>
+
+            <form onSubmit={MessageHandler} className="flex-2">
                 <input onChange={(e) => setMessage(e.target.value)} value={message} />
                 <button>Send</button>
             </form>
-            <Chat chat={chat} rooms={rooms} />
+
         </>
     )
 }

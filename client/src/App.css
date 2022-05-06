@@ -4,12 +4,6 @@
   box-sizing:none;
 }
 
-
-
-.flex-2{
-  flex:2;
-}
-
 #header{
   background-color:rgb(52, 52, 52);
   color:white;
@@ -18,45 +12,23 @@
   width:100vw;
 }
 
-
 /* Fix the body and header size calculation */
 #body{ 
   display:flex;
   justify-content:space-between;
   height:94vh;
   padding-top:63px;
-
 }
 
 #main-left{
   background-color:rgb(52, 52, 52);
-
   display:flex;
   flex-direction:column;
-  align-items:center;
-
-}
-
-#main-right{
-  border:solid 1px red;
 }
 
 /* BTN Create */
 
-#newRoomInput{
-  padding:5px;
-}
 
-#createbtn{
-
-  width:100%;
-  height:50px;
-
-  background-color:rgb(8, 162, 223);
-  color:white;
-  cursor:pointer;
-  font-size:20px;
-}
 
 /*Room Link */
 

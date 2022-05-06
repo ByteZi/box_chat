@@ -1,0 +1,13 @@
+#newRoomInput{
+    padding:5px;
+  }
+  
+  #createbtn{
+    width:100%;
+    height:50px;
+  
+    background-color:rgb(8, 162, 223);
+    color:white;
+    cursor:pointer;
+    font-size:20px;
+  }

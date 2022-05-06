@@ -22,11 +22,13 @@ io.on('connection', (socket) => {
     //Emit all rooms to everyone
     io.emit("InitRoom", Object.keys(roomChat))
     
-    socket.on("joinRoom", (roomName)=> {
+    socket.on("joinRoom", (roomName, userName)=> {
+        console.log("User Joined : ",userName, roomName)
         socket.join(roomName)
         io.emit("prevChat", roomChat[roomName])
     })
 
+     //FUTURE UPDATE / FIX : Once ["newRoom"] is called, ["updatedList"] gets called 
     socket.on("newRoom", (newRoom) =>{
         if(roomChat[newRoom]) console.log("room Exists")
         // roomChat[newRoom] = []
