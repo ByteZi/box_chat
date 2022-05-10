@@ -9,6 +9,7 @@ const io = require('socket.io')(server, { cors: true });
 server.listen(PORT, () => console.log("Port :",PORT))
 
 let roomChat = {}
+let users = {}
 
 io.on('connection', (socket) => {
     //io is the SERVER EMITS GOD DAMNIT
@@ -16,11 +17,13 @@ io.on('connection', (socket) => {
     //[io.emit] is the server to emit it to everyone
 
     console.log("User connected", socket.id)
+    //Save connected User
+    // users[]
 
     //Emit all rooms to everyone
     io.emit("InitRoom", Object.keys(roomChat))
     
-    socket.on("joinRoom", (roomName, userName)=> {
+    socket.on("joinRoom", (roomName, userName) => {
         console.log("User Joined : ",userName, roomName)
         socket.join(roomName)
         io.emit("prevChat", roomChat[roomName])

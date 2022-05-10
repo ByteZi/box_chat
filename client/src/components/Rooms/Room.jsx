@@ -43,7 +43,6 @@ const Room = (props) => {
                     <h1 className="flex-05">{roomName} 📦</h1>
                 </div>
 
-
                 <div id="chat-container" className="flex-3">
                     {
                         chat.map((user, i) => {
@@ -62,8 +61,6 @@ const Room = (props) => {
                         })
                     }
                 </div>
-
-                
 
                 <form onSubmit={MessageHandler} className="flex-05 sendform">
                     <input placeholder="Send message" className="sendinput" onChange={(e) => setMessage(e.target.value)} value={message} />

@@ -13,8 +13,8 @@ import {
 } from "react-router-dom";
 
 function App() {
-  const [socket] = useState(() => io(':8000'));
   
+  const [socket] = useState(() => io(':8000'));
   const [userName, setUserName] = useState("")
   const [check, setCheck] = useState(false)
   const [rooms, setRooms] = useState([])
@@ -49,22 +49,21 @@ function App() {
           <div id="main-left">
             <RoomsList setRooms={setRooms} rooms={rooms} />
           </div>
+
           <div id="main-right">
           <Switch>
             <Route path="/:roomName">
-
               <Room
                 userName={userName}
                 rooms={rooms}
               />
-              
-
             </Route>
             <Route path="/">
               <Main/>
             </Route>
           </Switch>
           </div>
+
         </main>
 
       </BrowserRouter>
