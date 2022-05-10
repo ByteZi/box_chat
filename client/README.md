@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+<!-- # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -67,4 +67,39 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 ### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify) -->
+
+# Dependencies
+
+```
+npm i react-router-dom@5
+```
+
+# BoxChat 📦
+
+Ever wanted to chat with random strangers? well BoxChat is here to solve your problem!
+
+<br/>
+
+BoxChat is a realtime chatting application where users can create rooms for specific topic discussions
+
+<br/>
+
+This application Utilizes WebSocket protocols to send data from client -> server -> client
+
+<br/>
+
+As of now the chats are rendered as an object key to simulate recent chats sent to the specific room
+
+# Current Features
+- Add custom rooms
+- Usernames for each user
+
+<br/>
+
+# Future Updates
+- Implement a Database Structure using MongoDB
+- Allow deletion of rooms
+- Create an Error if room does not exist
+- User private messaging
+- Display current connected users for each room
