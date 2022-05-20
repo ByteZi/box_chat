@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import io from 'socket.io-client';
 import { useParams } from 'react-router'
 import "./Room.css"
-import ConnectedUsers from "../ConnectedUsers/ConnectedUsers"
+//import ConnectedUsers from "../ConnectedUsers/ConnectedUsers"
 
 const Room = (props) => {
     const { userName, rooms } = props
